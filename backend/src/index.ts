@@ -1,9 +1,12 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 
-const app = new Hono();
+import allCards from "@/routes/allCards/index.route.js";
 
 const port = 3000;
+
+const app = new Hono();
+app.route("/allcards", allCards);
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");

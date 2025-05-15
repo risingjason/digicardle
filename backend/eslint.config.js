@@ -20,7 +20,7 @@ export default antfu({
       tsconfigRootDir: ".",
     }],
     "unicorn/filename-case": ["error", {
-      case: "kebabCase",
+      case: "camelCase",
       ignore: ["README.md"],
     }],
   },
