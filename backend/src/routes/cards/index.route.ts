@@ -41,7 +41,7 @@ app.get("/:card", async (c) => {
   }
 });
 
-app.get("/image/:card", async (c) => {
+app.get("/:card/image", async (c) => {
   const card = c.req.param("card");
   try {
     const $ = await cheerio.fromURL(`${DIGIMON_WIKI_ROUTE}/${card}${DIGIMON_WIKI_GALLERY}`);
