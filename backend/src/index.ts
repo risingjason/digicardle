@@ -1,6 +1,7 @@
-import cards from "@/routes/cards/index.route.js";
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+
+import cards from "@/routes/cards/index.route.js";
 
 const port = 3000;
 

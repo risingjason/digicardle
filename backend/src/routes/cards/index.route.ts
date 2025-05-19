@@ -19,8 +19,8 @@ app.get("/", async (c) => {
       setCache("cards", response.data, 1);
     }
     catch (err) {
-      console.log("Error while getting all cards.");
-      console.log(err);
+      console.error("Error while getting all cards.");
+      console.error(err);
     }
   }
 
@@ -37,7 +37,8 @@ app.get("/:card", async (c) => {
     return c.text(cardData);
   }
   catch (err) {
-    console.log(err);
+    console.error("Error while getting card: ", card);
+    console.error(err);
   }
 });
 
@@ -46,19 +47,20 @@ app.get("/:card/image", async (c) => {
   try {
     const $ = await cheerio.fromURL(`${DIGIMON_WIKI_ROUTE}/${card}${DIGIMON_WIKI_GALLERY}`);
     const cardsSelector = $("div#gallery-0 img[data-image-name]");
-    let cardVariations = [];
+    const cardVariations = [];
     for (let i = 0; i < cardsSelector.length; i++) {
-      const card = cardsSelector[i].attribs["data-src"].split("png")[0] + "png";
+      const card = `${cardsSelector[i].attribs["data-src"].split("png")[0]}png`;
 
       // removes samples because they are usually dupes
       if (!card.toLowerCase().includes("sample")) {
         cardVariations.push(card);
       }
     }
-    return c.text("" + cardVariations);
+    return c.text(`${cardVariations}`);
   }
   catch (err) {
-    console.log(err);
+    console.error("Error while getting card image: ", card);
+    console.error(err);
   }
 });
 
