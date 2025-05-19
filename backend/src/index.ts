@@ -1,12 +1,11 @@
+import cards from "@/routes/cards/index.route.js";
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-
-import allCards from "@/routes/allCards/index.route.js";
 
 const port = 3000;
 
 const app = new Hono();
-app.route("/allcards", allCards);
+app.route("/cards", cards);
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");

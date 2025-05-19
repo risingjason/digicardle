@@ -1,8 +1,8 @@
-import type { AllCards } from "@/routes/allCards/index.route.js";
+import type { AllCards } from "@/routes/cards/index.route.js";
 
 const cardCache = new Map<string, { data: [AllCards]; expires: number }>();
 
-export const getCache = (key: string) => {
+export function getCache(key: string) {
   const entry = cardCache.get(key);
 
   // returns null if no entry or entry expired
@@ -13,6 +13,6 @@ export const getCache = (key: string) => {
   return entry.data;
 }
 
-export const setCache = (key: string, data: [AllCards], ttl: number = 300000) => {
-  cardCache.set(key, { data, expires: Date.now() + ttl});
-};
+export function setCache(key: string, data: [AllCards], ttl: number = 300000) {
+  cardCache.set(key, { data, expires: Date.now() + ttl });
+}
