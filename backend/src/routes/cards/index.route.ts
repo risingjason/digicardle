@@ -49,7 +49,11 @@ app.get("/image/:card", async (c) => {
     let cardVariations = [];
     for (let i = 0; i < cardsSelector.length; i++) {
       const card = cardsSelector[i].attribs["data-src"].split("png")[0] + "png";
-      cardVariations.push(card);
+
+      // removes samples because they are usually dupes
+      if (!card.toLowerCase().includes("sample")) {
+        cardVariations.push(card);
+      }
     }
     return c.text("" + cardVariations);
   }
