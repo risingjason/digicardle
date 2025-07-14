@@ -3,7 +3,7 @@ import { Hono } from "hono";
 
 import cards from "@/routes/cards/index.route.js";
 
-const port = 3000;
+const port = 9999;
 
 const app = new Hono();
 app.route("/cards", cards);
