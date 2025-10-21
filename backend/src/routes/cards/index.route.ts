@@ -16,7 +16,7 @@ app.get("/", async (c) => {
   if (!getCache("cards")) {
     try {
       const response = await axios.get(DIGIMON_CARD_IO + DIGIMON_CARD_IO_ALL_CARDS_ROUTE);
-      setCache("cards", response.data, 1);
+      setCache("cards", response.data, 24);
     }
     catch (err) {
       console.error("Error while getting all cards.");
